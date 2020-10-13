@@ -271,7 +271,7 @@ func (list ErrorList) Filter(fns ...utilerrors.Matcher) ErrorList {
 	return fromAggregate(err.(utilerrors.Aggregate))
 }
 
-// Implementing Is error method
-func (m Error) Is(target error) bool {
-	return target.Error() == m.Error()
+// Is reports whether any Error in err's chain matches target.
+func (e Error) Is(target error) bool {
+	return (string(e.Type) == target.Error())
 }
